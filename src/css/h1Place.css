@@ -1,0 +1,42 @@
+/* this one will be inside all to move even the harros */
+@keyframes moveUP {
+    0% {
+      transform: translate(0, 0); /* Start at original position */
+    }
+    50% {
+      transform: translate(0, -10px); /* Move up 10px (adjust as needed) */
+    }
+    100% {
+      transform: translate(0, 0); /* Move back to original position */
+    }
+  }
+
+
+.PlaceBet {
+  position: relative;
+  opacity: 1;
+  color: wheat;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  transition: opacity 2s ease-in-out;
+  font-size: 30px;
+
+
+}
+
+/* this part is the one that we callin
+from the js to make it disaper, when we do the bet*/
+.PlaceBetOut {
+  animation: fadeOutUp 2s forwards;
+  font-size: 30px;
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px); /* Adjust this value as needed */
+  }
+}

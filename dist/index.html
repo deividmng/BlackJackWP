@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</head>
+<body>
+  <header>
+    <div class="header">
+        <img  alt="" id="imgCard"> <!-- La src se asignará desde JavaScript -->
+        <div class="chips">
+            <p id="player-el">David: £200</p>
+            <!-- La imagen de salud se añadirá desde JavaScript -->
+        </div>
+
+        <!-- esta es la barra -->
+        <div class="progress-bar-container">
+            <span id="left-number" class="bordered">0</span>
+            <div class="progress-bar borderedBar">
+                <div id="fill-bar">
+                    <div id="fill-bar" class="progress"></div>
+                </div>
+            </div>
+            <span id="right-number" class="bordered">100</span>
+        </div>
+    </div>
+</header>
+
+
+<div id="player-container">
+  <section id="player">
+    <p id="message-el"></p>
+    <div id="cards-el";"></div>
+    <div id="cartas2"></div>
+    
+    <div class="container-el">
+      <div id="sum-el"></div>
+    </div>
+  </section>
+</div>
+
+<h1 id="PlaceBet" class="PlaceBet">Place Your Bet </h1>
+<section class="button-play">
+  <button id="stand" onclick="stand()">
+    <!-- <img src="./img/buttons/front_hand_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg"> -->
+    <span>STAND</span>
+  </button>
+
+  <button id="doubleBet" onclick="doubleBet()" >
+    <!-- <img src="./img/buttons/roulette-svgrepo-com.svg"> -->
+    <span>DOUBLE BET</span>
+  </button>
+
+  <button id="newCard" onclick="newCard()">
+    <!-- <img src="./img/buttons/arrow_downward_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg"> -->
+    <span>NEW CARD</span>
+  </button>
+</section>
+
+
+
+<div id="startGamePricipal" class="startGamePricipal">
+  <div class="button-group">
+    <button id="startGame" onclick="startGame()">
+      <!-- <img src="./img/buttons/play_arrow_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg" alt="Play" width="24" -->
+        <!-- height="24"> -->
+      <span>Deal</span>
+    </button>
+
+    <button id="cleanBet" onclick="cleanBet()">
+      <!-- <img src="./img/buttons/close_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg" alt="Clear" width="24" height="24"> -->
+      <span>Clear</span>
+    </button>
+    
+  </div>
+
+
+
+  
+
+  <div id="img-chips">
+    <!-- Aquí se añadirán la imagen y el valor de apuesta -->
+  </div>
+  
+<section id="bet-buttons">
+  <div class="allArrows">
+
+    <!-- <img src="./img/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px" alt="Additional Image">
+    <img src="./img/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px" alt="Additional Image">
+    <img src="./img/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px" alt="Additional Image">
+    <img src="./img/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px" alt="Additional Image">
+    <img src="./img/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px" alt="Additional Image">
+    <img src="./img/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px" alt="Additional Image"> -->
+
+  </div>
+
+  <section id="bet-buttons">
+    <!-- Los botones de apuesta se generarán dinámicamente aquí desde el archivo JS -->
+  </section>
+
+ 
+</section>
+
+
+
+
+
+
+<p id="counter-el">Next chips in: 60s</p>
+
+   
+<script defer src="bundle.js"></script></body>
+</html>

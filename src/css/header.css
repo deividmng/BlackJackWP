@@ -1,0 +1,215 @@
+
+
+body {
+    background: url('../img/tableroBJ.jpg');
+    background-repeat: none;
+    background-size: cover;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+
+  }
+
+ .chips {
+    margin-right: auto; /* Esto empuja los elementos a la derecha */
+}
+
+.progress-bar-container {
+    margin-left: auto; /* Esto empuja la barra de progreso a la derecha */
+}
+
+
+
+  #player-el {
+    color: aliceblue;
+    font-size: 15px;
+    padding: 10px 30px;
+    border: 2px solid rgb(204, 174, 4);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), /* Sombra exterior */
+    inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra interior */
+     /* Gradiente sutil background: linear-gradient(145deg, #8B4513, #A52A2A);  */
+    position: relative; /* Permite posicionamiento absoluto dentro */
+    display: flex; /* Usa flexbox para alinear el contenido */
+    align-items: center; /* Centra el contenido verticalmente */
+    justify-content: space-between; /* Espacio entre el texto y la imagen */
+}
+
+
+
+  .chips {
+    display: flex;
+    align-items: center;
+    
+  }
+
+
+  
+  .imgSalud {
+    height: 30px;
+    width: 30px;
+   
+    cursor: pointer;
+    animation: heartbeat 5s infinite;
+    margin-left: 5px !important;
+  }
+
+    
+  @keyframes heartbeat {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(1.1);
+    }
+    50% {
+      transform: scale(1);
+    }
+    75% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* esta es la parte de la barra de progreso*/
+
+
+  .progress-bar-container {
+    position: relative;
+    width: 200px; /* Ancho total de la barra de progreso */
+    height: 30px; /* Altura total de la barra de progreso, ajusta según necesites */
+    margin-left: 10px; /* Espacio a la izquierda */
+  }
+  
+  .progress-bar {
+    width: 100%; /* Llena el contenedor */
+    height: 10px; /* Altura de la barra de progreso */
+    
+    
+    overflow: hidden; /* Oculta el contenido que desborda */
+  }
+  
+  .progress {
+    width: 10%; /* Ancho inicial de la barra de progreso */
+    height: 100%; /* Altura de la barra de progreso */
+    background-color: #4caf50; /* Color de la barra de progreso */
+    border-radius: 5px; /* Borde redondeado */
+  }
+
+  .progress-bar-container {
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .bordered {
+    border: 1px solid gold; /* Borde de oro */
+    padding: 5px;
+    border-radius: 5px; /* Bordes redondeados */
+    color: white;
+  }
+  
+  .borderedBar {
+  border-top: 1px solid rgb(204, 174, 4);    /* Solo borde superior */
+  border-bottom: 1px solid rgb(204, 174, 4); /* Solo borde inferior */
+  padding: 5px;
+   
+}
+  .progress-bar {
+    position: relative;
+    width: 80%;
+    height: 5px;
+    margin: 0 ;
+    overflow: hidden;
+  }
+  
+  #fill-bar {
+    height: 100%;
+    width: 0;
+    background-color: gold;
+    transition: width 0.5s ease;
+  }
+  
+  #left-number,
+  #right-number {
+    font-size: 18px;
+  }
+  
+
+  
+  @keyframes progressAnimation {
+    0% {
+      width: 0%;
+      background-color: #4caf50; /* Verde al inicio */
+    }
+    50% {
+      width: 100%;
+      background-color: gold; /* Cambia a dorado al final */
+    }
+    100% {
+      width: 0%;
+      background-color: gold; /* Cambia a dorado al final */
+    }
+  }
+  /* Clase que aplica la animación */
+  .progress-animated {
+    animation: progressAnimation 2s forwards; /* Duración de 2 segundos, puede ajustarse */
+  }
+  
+
+
+
+
+  
+  .number {
+    position: absolute;
+    top: 5px; /* Posiciona los números encima de la barra de progreso */
+    transform: translateY(-50%);
+    font-size: 12px; /* Tamaño del número, ajusta según necesites */
+    color: #fff; /* Color del número */
+    width: 30px; /* Ancho del círculo */
+    height: 30px; /* Altura del círculo */
+    border-radius: 50%; /* Círculo */
+    background-color: #4caf50; /* Color de fondo del círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1; /* Asegura que los números estén por encima de la barra de progreso */
+  }
+  
+  .number.one {
+    left: calc(0% - 15px); /* Alinea el número uno a la izquierda */
+
+  }
+  
+  .number.two {
+    right: calc(0% - 15px); /* Alinea el número dos a la derecha */
+    margin-right: 10px;
+  }
+  
+  
+  
+  @keyframes heartbeat {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(1.1);
+    }
+    50% {
+      transform: scale(1);
+    }
+    75% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }

@@ -1,0 +1,39 @@
+@import url("./header.css");
+@import url("./h1Place.css");
+@import url("./buttons.css");
+
+.allArrows {
+  display: flex; /* Esto hará que las imágenes se alineen en una fila */
+}
+
+.add5px {
+  margin-right: 5px; /* Espaciado entre las flechas */
+  width: 24px; /* Ajusta el tamaño de la imagen si es necesario */
+  height: 24px; /* Ajusta el tamaño de la imagen si es necesario */
+}
+
+
+
+.bet-button {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.chip-image {
+  width: 50px; /* Ajusta el tamaño según tu diseño */
+  height: auto;
+}
+
+.bet-value {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px; /* Tamaño del texto */
+  font-weight: bold;
+  color: white; /* O el color que quieras para el número */
+  text-shadow: 1px 1px 2px black; /* Añadir sombra para mejorar la visibilidad */
+  pointer-events: none; /* Para que el clic solo se detecte en el div, no en el texto */
+}
