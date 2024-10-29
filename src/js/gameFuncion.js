@@ -26,7 +26,7 @@ export function startGame() {
     console.log(cards)
     console.log('Start Game button clicked');
 
-    // Verifica si hay cartas disponibles
+    // Verifica si hay cartas disponiblees
     if (drawnCards.length === 0) {
         toastr.error("No hay cartas disponibles.");
         return;
