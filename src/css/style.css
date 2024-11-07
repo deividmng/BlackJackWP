@@ -37,3 +37,66 @@
   text-shadow: 1px 1px 2px black; /* Añadir sombra para mejorar la visibilidad */
   pointer-events: none; /* Para que el clic solo se detecte en el div, no en el texto */
 }
+
+
+.sumDel {
+  position: relative; /* Necesario para posicionar el ::before correctamente */
+  background-color: black; /* Fondo negro */
+  color: white; /* Texto blanco */
+  border: 2px solid gold; /* Borde dorado */
+  width: 40px; /* Ajusta el tamaño según tus necesidades */
+  height: 40px; /* Ajusta el tamaño según tus necesidades */
+  border-radius: 50%; /* Bordes completamente redondeados */
+  display: flex; /* Para centrar el texto */
+  align-items: center; /* Centra el texto verticalmente */
+  justify-content: center; /* Centra el texto horizontalmente */
+  font-weight: bold; /* Texto en negrita */
+  margin-top: -10px; /* Eleva el elemento un poco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Opcional: Sombra para darle un efecto de elevación */
+}
+
+.sumDel::before {
+  content: "";
+  position: absolute;
+  bottom: -10px; /* Ajusta la altura para que sobresalga hacia abajo */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 2px solid gold; /* Triángulo hacia la izquierda */
+  border-right: 2px solid gold; /* Triángulo hacia la derecha */
+  border-top: 20px solid black; /* Triángulo hacia abajo */
+}
+
+
+
+
+
+.sum {
+  position: relative; /* Necesario para posicionar el ::before correctamente */
+  background-color: black; /* Fondo negro */
+  color: white; /* Texto blanco */
+  border: 2px solid gold; /* Borde dorado */
+  width: 40px; /* Ajusta el tamaño según tus necesidades */
+  height: 40px; /* Ajusta el tamaño según tus necesidades */
+  border-radius: 50%; /* Bordes completamente redondeados */
+  display: flex; /* Para centrar el texto */
+  align-items: center; /* Centra el texto verticalmente */
+  justify-content: center; /* Centra el texto horizontalmente */
+  font-weight: bold; /* Texto en negrita */
+  margin-top: -10px; /* Eleva el elemento un poco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Opcional: Sombra para darle un efecto de elevación */
+}
+
+.sum::before {
+  content: "";
+  position: absolute;
+  top: -10px; /* Ajusta la altura para que sobresalga */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 2px solid gold; /* Triángulo hacia la izquierda */
+  border-right: 2px solid gold; /* Triángulo hacia la derecha */
+  border-bottom: 20px solid black; /* Triángulo hacia abajo */
+}

@@ -21,7 +21,7 @@ export function initializeDeck() {
       if (data.success) {
         deckId = data.deck_id;
         console.log(`Deck ID: ${deckId}`);
-        drawMultipleCards(5);
+        drawMultipleCards(10);
       } else {
         console.error('No se pudo inicializar el mazo.');
       }
@@ -42,10 +42,12 @@ export function drawCard(count) {
       if (data.success) {
         data.cards.forEach(card => {
           drawnCards.push(card);
+          
         });
         console.log(`Cartas dibujadas: ${data.cards.map(card => `${card.value} of ${card.suit}`).join(', ')}`);
       } else {
         console.error('No se pudo dibujar una carta.');
+        console.error(cards);
       }
     })
     .catch(error => console.error('Error al dibujar la carta:', error));

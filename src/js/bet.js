@@ -2,7 +2,7 @@ import chipImage from '../img/chip.png';
 import { chips } from './counterChips';
 
 // Definir la función bet y hacerla global
-let betAmount = 0;
+
 
 export function getbetAmount() {
     return betAmount;
@@ -21,7 +21,8 @@ export function createBetButtons() {
         { id: 'bet-twentyfive-btn', value: 25 },
         { id: 'bet-fifty-btn', value: 50 },
         { id: 'bet-hundred-btn', value: 100 },
-        { id: 'bet-twofifty-btn', value: 250 }
+        { id: 'bet-twofifty-btn', value: 10000 }
+    
     ];
 
     const betButtonsSection = document.getElementById('bet-buttons');
@@ -48,7 +49,11 @@ export function createBetButtons() {
 }
 
 // Función para realizar una apuesta
+
 window.bet = function(value) {
+    console.log("Chips remaining:", chips[0]); // Para verificar los chips restantes
+    console.log("Current bet amount:", betAmount); // Para verificar el valor de betAmount
+    console.log("bet function called with value:", value); // Para verificar la llamada a la función
     // Verificar si tienes suficientes fichas para la apuesta
     if (chips[0] >= value) {
         const startingChips = chips[0]; // Valor inicial antes de la apuesta
@@ -67,10 +72,13 @@ window.bet = function(value) {
 
         // Actualizar visualización de chips restantes con animación
         animateChipsChange(startingChips, chips[0], 1000);
+        console.log("Chips remaining:", chips[0]); // Para verificar los chips restantes
+        console.log("Current bet amount:", betAmount); // Para verificar el valor de betAmount
     } else {
         alert("Not enough chips to place this bet!");
     }
 };
+
 
 // Función para limpiar la apuesta
 window.cleanBet = function() {
@@ -87,6 +95,19 @@ window.cleanBet = function() {
     const playerEl = document.getElementById("player-el");
     playerEl.textContent = `Chips: £${chips[0]}`;
 };
+
+// Suponiendo que getbetAmount y setbetAmount ya están importados en este archivo
+
+
+export let betAmount = 0;
+
+export function getBetAmount() {
+    return betAmount;
+}
+
+export function setBetAmount(value) {
+    betAmount = value;
+}
 
 export function createBetImage(value) {
     const imgChipsDiv = document.getElementById('img-chips');
