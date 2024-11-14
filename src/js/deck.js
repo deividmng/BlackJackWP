@@ -21,7 +21,8 @@ export function initializeDeck() {
       if (data.success) {
         deckId = data.deck_id;
         console.log(`Deck ID: ${deckId}`);
-        drawMultipleCards(10);
+        drawMultipleCards(20);
+        // cambiar luego para poder tener mas cartar 
       } else {
         console.error('No se pudo inicializar el mazo.');
       }

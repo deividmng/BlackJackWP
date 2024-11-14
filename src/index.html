@@ -1,133 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asset Management</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 <body>
-  <header>
-    <div class="header">
-        <img  alt="" id="imgCard"> <!-- La src se asignará desde JavaScript -->
-        <div class="chips">
-            <p id="player-el">Chips: £200sss</p>
-            <!-- La imagen de salud se añadirá desde JavaScript -->
-        </div>
+  <!-- Header Section -->
+  <header class="header">
+      <!-- <img id="imgCard" alt="Card Image"> La src se asignará desde JavaScript -->
+      <div class="chips">
+          <p id="player-el">Chips: £200</p>
+      </div>
 
-        <!-- esta es la barra -->
-        <div class="progress-bar-container">
-            <span id="left-number" class="bordered">0</span>
-            <div class="progress-bar borderedBar">
-                <div id="fill-bar">
-                    <div id="fill-bar" class="progress"></div>
-                </div>
-            </div>
-            <span id="right-number" class="bordered">100</span>
-        </div>
-    </div>
-</header>
+      <!-- Progress Bar -->
+      <div class="progress-bar-container">
+          <span id="left-number" class="bordered">0</span>
+          <div class="progress-bar borderedBar">
+              <div id="fill-bar" class="progress"></div>
+          </div>
+          <span id="right-number" class="bordered">100</span>
+      </div>
+  </header>
 
+  
+  <!-- Dealer Section -->
+   <section id="">
 
+     <div id="player-dealer" class="player-dealer">
+       <!-- Contenido del dealer aquí -->
+      </div>
+      <div id="cards-dele"></div> <!-- Contenedor para cartas del dealer -->
+      <div id="message-dele"></div> <!-- Contenedor para el mensaje del dealer -->
+    </section>
 
-<div id="player-dealer" class="player-dealer">
-  <!-- Aquí puedes añadir contenido relacionado con el dealer -->
-</div>
+  <!-- Player Section -->
+  <div id="player-container">
+      <section id="player">
+          <p id="message-el"></p>
+          <div id="cards-el"></div>
+          
+          <div class="container-el">
+              <div id="sum-el"></div>
+          </div>
+      </section>
+  </div>
 
-<div id="cards-dele"></div> <!-- Contenedor para las cartas del dealer -->
-<div id="message-dele"></div> <!-- Contenedor para el mensaje del dealer -->
-
-
-
-
-<div id="cards-el";"></div>
-<div id="cards-dele";"></div>
-
-<div id="player-container">
-  <section id="player">
-    <p id="message-el"></p>
-    <div id="cards-el";"></div>
-    <p id="cards-dele">
-    <div id="cartas2"></div>
-    
-    <div class="container-el">
-      <div id="sum-el"></div>
-    </div>
+  <!-- Game Buttons Section -->
+  <section class="button-play">
+      <button id="stand" onclick="stand()"><span>STAND</span></button>
+      <button id="doubleBet" onclick="doubleBet()"><span>DOUBLE BET</span></button>
+      <button id="newCard" onclick="newCard()"><span>NEW CARD</span></button>
   </section>
-</div>
 
-<h1 id="PlaceBet" class="PlaceBet">Place Your Bet </h1>
-
-<section class="button-play">     <!--  here goes the botton when  the game is on -->
-  <button id="stand" onclick="stand()">
-    <!-- <img src="./img/buttons/front_hand_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg"> -->
-    <span>STAND</span>
-  </button>
-
-  <button id="doubleBet" onclick="doubleBet()" >
-    <!-- <img src="./img/buttons/roulette-svgrepo-com.svg"> -->
-    <span>DOUBLE BET</span>
-  </button>
-
-  <button id="newCard" onclick="newCard()">
-    <!-- <img src="./img/buttons/arrow_downward_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg"> -->
-    <span>NEW CARD</span>
-  </button>
-</section>
-
-
-
-<div id="startGamePricipal" class="startGamePricipal">
+  <!-- Start Game and Bet Buttons Section -->
   <div class="button-group">
-    <button id="startGame" onclick="startGame()">
-      <!-- <img src="./img/buttons/play_arrow_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg" alt="Play" width="24" -->
-        <!-- height="24"> -->
-      <span>Deal</span>
-    </button>
-
-    <button id="cleanBet" onclick="cleanBet()">
-      <!-- <img src="./img/buttons/close_24dp_F3F3F3_FILL0_wght400_GRAD0_opsz24.svg" alt="Clear" width="24" height="24"> -->
-      <span>Clear</span>
-    </button>
-    
-  </div>
-
-
-
-  
-
-  <div id="img-chips">
-    <!-- Aquí se añadirán la imagen y el valor de apuesta -->
-  </div>
-  
-<section id="bet-buttons">
-  <div class="allArrows">
-
-    <!-- <img src="./img/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px" alt="Additional Image">
-    <img src="./img/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px" alt="Additional Image">
-    <img src="./img/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px" alt="Additional Image">
-    <img src="./img/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px" alt="Additional Image">
-    <img src="./img/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px" alt="Additional Image">
-    <img src="./img/arrow_downward_24dp_FILL0_wght400_GRAD0_opsz24 (1).svg" class="add5px" alt="Additional Image"> -->
-
-  </div>
-
-  <section id="bet-buttons">
-    <!-- Los botones de apuesta se generarán dinámicamente aquí desde el archivo JS -->
-  </section>
-
- 
-</section>
-
-
-
-
-
-
-<p id="counter-el">Next chips in: 60s</p>
+    <button id="startGame" onclick="startGame()"><span>Deal</span></button>
+    <button id="cleanBet" onclick="cleanBet()"><span>Clear</span></button>
+</div>
 
    
+
+      <div id="img-chips">
+          <!-- Aquí se añadirán la imagen y el valor de apuesta -->
+      </div>
+
+      <!-- Place Bet Message -->
+      <h1 id="PlaceBet" class="PlaceBet">Place Your Bet</h1>
+
+      <!-- Arrows Section -->
+ 
+
+      <!-- Bet Buttons -->
+ 
+
+   <section id="center">
+
+     <div id="bet-buttons" class="bet-buttons">
+       <div class="allArrows"></div>
+       <!-- Los botones de apuesta se generarán dinámicamente aquí desde el archivo JS -->
+      </div>
+    </section>
+  
+
+  <!-- Countdown Timer -->
+  <p id="counter-el">Next chips in: 60s</p>
 </body>
 </html>
