@@ -22,6 +22,7 @@
 .chip-image {
   width: 50px; /* Ajusta el tamaño según tu diseño */
   height: auto;
+  
 }
 
 .bet-value {
@@ -47,7 +48,7 @@
 
 .sumDel {
   position: absolute; /* Necesario para posicionar el ::before correctamente */
-  top: 1%; /* Centrado vertical */
+  top: 5%; /* Centrado vertical */
   left: 50%; /* Centrado horizontal */
   background-color: black; /* Fondo negro */
   color: white; /* Texto blanco */
@@ -158,7 +159,7 @@
   flex-wrap: wrap;          /* Permite que los botones se ajusten en varias filas si es necesario */
   width: 100%;              /* Asegura que el contenedor ocupe todo el ancho disponible */
   height: 100%;             /* Asegura que el contenedor ocupe toda la altura disponible */
-
+margin-bottom: 40px;
 }
 .center {
   display: flex;
@@ -167,7 +168,7 @@
   flex-wrap: wrap;          /* Permite que los botones se ajusten en varias filas si es necesario */
   width: 100%;              /* Asegura que el contenedor ocupe todo el ancho disponible */
   height: 100%;             /* Asegura que el contenedor ocupe toda la altura disponible */
-
+  margin-bottom: 40px;
 }
 
 
@@ -181,7 +182,124 @@ margin-left: 20px;
 
 }
 
-.add5px {
-  color: red;
+
+.br {
+  background-color: red;
 }
 
+/* #message-el {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    color: #fff;
+    font-size:10px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    
+    padding: 10px;
+   
+    transition: opacity 1s ease-in-out;
+} */
+
+
+/* Estilo para el mensaje normal */
+.message-normal {
+  color: #fff;
+  background-color: rgba(76, 175, 80, 0.5); /* Verde con 50% de transparencia */
+  font-size: 20px;
+  text-align: center;
+  border-radius: 5px;
+  display: inline-block; /* Asegura que el fondo solo cubra el texto */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 30px;
+  margin: 20px 480px; /* Márgenes izquierdo y derecho de 480px */
+}
+
+
+/* Estilo para el mensaje de Blackjack */
+/* Estilo para el mensaje de Blackjack */
+/* Estilo para el mensaje de Blackjack */
+.message-blackjack {
+  color: #fff;
+  font-size: 100px; /* Hacer el texto más grande */
+  text-align: center;
+  border-radius: 10px;
+  font-weight: bold;
+  position: absolute; /* Asegúrate de que el mensaje esté posicionado de forma absoluta */
+  top: 20%; /* Centrar verticalmente */
+  left: 50%; /* Centrar horizontalmente */
+  transform: translate(-50%, -50%) scale(1.2); /* Centrar el mensaje y escalarlo */
+  z-index: 9999; /* Asegurarse de que el mensaje esté al frente */
+  animation: popup 1s ease-in-out, glow 1.5s infinite alternate; /* Animaciones */
+}
+
+/* Animación para hacer que el mensaje de Blackjack aparezca y resplandezca */
+@keyframes popup {
+  0% {
+      transform: scale(0);
+      opacity: 0;
+  }
+  100% {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+
+/* Efecto de resplandor para dar un toque de victoria */
+@keyframes glow {
+  0% {
+      text-shadow: 0px 0px 10px #FFD700, 0px 0px 20px #FFD700, 0px 0px 30px #FFD700;
+  }
+  100% {
+      text-shadow: 0px 0px 15px #ffcc00, 0px 0px 30px #ffcc00, 0px 0px 45px #ffcc00;
+  }
+}
+
+/* Estilo para el mensaje de Bust */
+/* Estilo para el mensaje de Bust (Pérdida) */
+.message-bust {
+  color: red;
+  font-size: 100px; /* Hacer el texto más grande */
+  text-align: center;
+  border-radius: 10px;
+  font-weight: bold;
+  position: absolute; /* Asegúrate de que el mensaje esté posicionado de forma absoluta */
+  top: 20%; /* Centrar verticalmente */
+  left: 50%; /* Centrar horizontalmente */
+  transform: translate(-50%, -50%) scale(1.2); /* Centrar el mensaje y escalarlo */
+  z-index: 9999; /* Asegurarse de que el mensaje esté al frente */
+  animation: shake 0.5s ease-in-out, fadeIn 1s ease-out; /* Animaciones de agitar y desvanecer */
+}
+
+/* Animación de agitar (shake) para la pérdida */
+@keyframes shake {
+  0% {
+      transform: translateX(0);
+  }
+  25% {
+      transform: translateX(-10px);
+  }
+  50% {
+      transform: translateX(10px);
+  }
+  75% {
+      transform: translateX(-10px);
+  }
+  100% {
+      transform: translateX(0);
+  }
+}
+
+/* Animación para que el mensaje se desvanezca */
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}

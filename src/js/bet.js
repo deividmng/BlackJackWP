@@ -13,6 +13,10 @@ export function setbetAmount(value) {
 }
 
 
+
+
+
+
 document.getElementById("img-chips").style.display = "none";
 document.getElementById("img-chips").classList.add("center");
 
@@ -52,7 +56,6 @@ export function createBetButtons() {
 }
 
 // Función para realizar una apuesta
-
 window.bet = function(value) {
     console.log("Chips remaining:", chips[0]); // Para verificar los chips restantes
     console.log("Current bet amount:", betAmount); // Para verificar el valor de betAmount
@@ -67,6 +70,7 @@ window.bet = function(value) {
       },
       { once: true }
     );
+
     // Verificar si tienes suficientes fichas para la apuesta
     if (chips[0] >= value) {
         const startingChips = chips[0]; // Valor inicial antes de la apuesta
@@ -90,11 +94,28 @@ window.bet = function(value) {
     } else {
         alert("Not enough chips to place this bet!");
     }
-    document.getElementById("startGame").style.display = "flex";
-    document.getElementById("cleanBet").style.display = "flex";
-    
-document.getElementById("img-chips").style.display = "flex";
+
+    // Mostrar los botones progresivamente
+    const startGameButton = document.getElementById("startGame");
+    const cleanBetButton = document.getElementById("cleanBet");
+    const imgChips = document.getElementById("img-chips");
+
+    // Función para agregar la clase de animación de fade-in
+    function fadeIn(element) {
+        element.style.opacity = 0;
+        element.style.display = "flex";
+        setTimeout(() => {
+            element.style.transition = "opacity 2s ease-in-out"; // Transición para la opacidad
+            element.style.opacity = 1;
+        }, 10); // Retraso pequeño para permitir que la transición se active
+    }
+
+    // Aplicar fadeIn a los botones
+    fadeIn(startGameButton);
+    fadeIn(cleanBetButton);
+    fadeIn(imgChips);
 };
+
 
 
 // Función para limpiar la apuesta
