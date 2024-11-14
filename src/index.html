@@ -8,14 +8,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 <body>
-  <!-- Header Section -->
   <header class="header">
-      <!-- <img id="imgCard" alt="Card Image"> La src se asignará desde JavaScript -->
       <div class="chips">
           <p id="player-el">Chips: £200</p>
       </div>
 
-      <!-- Progress Bar -->
       <div class="progress-bar-container">
           <span id="left-number" class="bordered">0</span>
           <div class="progress-bar borderedBar">
@@ -25,67 +22,44 @@
       </div>
   </header>
 
-  
-  <!-- Dealer Section -->
-   <section id="">
-
-     <div id="player-dealer" class="player-dealer">
-       <!-- Contenido del dealer aquí -->
-      </div>
-      <div id="cards-dele"></div> <!-- Contenedor para cartas del dealer -->
-      <div id="message-dele"></div> <!-- Contenedor para el mensaje del dealer -->
-    </section>
-
-  <!-- Player Section -->
-  <div id="player-container">
-      <section id="player">
-          <p id="message-el"></p>
-          <div id="cards-el"></div>
-          
-          <div class="container-el">
-              <div id="sum-el"></div>
-          </div>
-      </section>
-  </div>
-
-  <!-- Game Buttons Section -->
-  <section class="button-play">
-      <button id="stand" onclick="stand()"><span>STAND</span></button>
-      <button id="doubleBet" onclick="doubleBet()"><span>DOUBLE BET</span></button>
-      <button id="newCard" onclick="newCard()"><span>NEW CARD</span></button>
+  <section id="dealer-container">
+     <div id="player-dealer" class="player-dealer"></div>
+     <div id="cards-dele"></div>
+     <div id="message-dele"></div>
   </section>
 
-  <!-- Start Game and Bet Buttons Section -->
-  <div class="button-group">
-    <button id="startGame" onclick="startGame()"><span>Deal</span></button>
-    <button id="cleanBet" onclick="cleanBet()"><span>Clear</span></button>
-</div>
+  <section id="player">
+      <p id="message-el"></p>
+      <p id="message-final"></p>
+      <div id="cards-el"></div>
+      <div id="sum-el"></div>
+  </section>
 
+  <div class="button-group  ">
+    <button id="startGame" onclick="startGame()">
+     
    
 
-      <div id="img-chips">
-          <!-- Aquí se añadirán la imagen y el valor de apuesta -->
-      </div>
+      <span>Deal</span></button>
+    <button id="cleanBet" onclick="cleanBet()"><span>Clear</span></button>
+  </div>
+  <div id="img-chips"></div>
 
-      <!-- Place Bet Message -->
-      <h1 id="PlaceBet" class="PlaceBet">Place Your Bet</h1>
+  <h1 id="PlaceBet" class="PlaceBet">Place Your Bet</h1>
 
-      <!-- Arrows Section -->
- 
-
-      <!-- Bet Buttons -->
- 
-
-   <section id="center">
-
-     <div id="bet-buttons" class="bet-buttons">
+  <section id="center">
+     <div id="bet-buttons" class="bet-buttons ">
        <div class="allArrows"></div>
-       <!-- Los botones de apuesta se generarán dinámicamente aquí desde el archivo JS -->
       </div>
-    </section>
-  
+  </section>
 
-  <!-- Countdown Timer -->
+  <section class="button-play">
+    <button id="stand" onclick="stand()"><span>STAND</span></button>
+    <button id="doubleBet" onclick="doubleBet()"><span>DOUBLE BET</span></button>
+    <button id="newCard" onclick="newCard()"><span>NEW CARD</span></button>
+  </section>
+
+
   <p id="counter-el">Next chips in: 60s</p>
 </body>
 </html>

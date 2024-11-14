@@ -11,6 +11,94 @@ export let isAlive = false;
 export let sum = 0;
 //let betAmount = 10; // Valor inicial o carga desde el almacenamiento si es necesario
 
+
+
+
+
+
+
+
+// function updateBetDisplay() {
+//   betSum.textContent = +betAmount;
+//   playerEl.textContent = player.name + ": £" + chips[0];
+// }
+let localBetAmount = betAmount; // Copia el valor
+  localBetAmount *= 2; // Doble de la apuesta
+  function doubleBet() {
+    // Verificar si el jugador tiene suficientes fichas y aún no ha pedido una nueva carta
+    if (chips[0] >= betAmount && !hasDrawnCard) {
+      // Restar la cantidad de la apuesta actual de las fichas del jugador
+      chips[0] -= betAmount;
+      // Doblar la apuesta
+     
+      createBetImage(betAmount * 2);
+      // Actualizar la visualización de la apuesta
+      // updateBetDisplay();
+      // Guardar el nuevo saldo de fichas en localStorage
+      localStorage.setItem("chips", chips[0]);
+  
+      // Pedir una nueva carta para el jugador
+      let card = getRandomCard();
+      // Asignar el valor correcto a la carta extraída
+      let cardValue;
+      if (card.value === "ACE") {
+        cardValue = 11; // Valor del As
+      } else if (["KING", "QUEEN", "JACK"].includes(card.value)) {
+        cardValue = 10; // Valor para figuras
+      } else {
+        cardValue = parseInt(card.value); // Convertir a número para cartas numéricas
+      }
+  
+      // Añadir el valor de la nueva carta a la suma total
+      sum += cardValue;
+      // Añadir la carta al array de cartas del jugador
+      cards.push(card);
+      // Marcar que el jugador ha pedido una carta extra
+      hasDrawnCard = true;
+  
+      // Ocultar el botón de doblar la apuesta después de que se ha utilizado
+      document.getElementById("doubleBet").style.display = "none";
+  
+      // // Actualizar la visualización del juego
+       renderGame();
+      // updateBetDisplay();
+      // Verificar las condiciones del juego
+      if (sum > 21) {
+        // El jugador se pasa (pierde)
+        message = "You Busted! Dealer Wins!";
+        loseBet();
+        resetGameAfterDelay()
+      } else if (sumDealer > 21) {
+        // El dealer se pasa (gana el jugador)
+        message = "Dealer Busted! You Win!";
+        winBet();
+        resetGameAfterDelay()
+      } else if (sum > sumDealer) {
+        // El jugador gana
+        message = "You Win!";
+        winBet();
+        resetGameAfterDelay()
+      } else if (sum < sumDealer) {
+        // El dealer gana
+        message = "Dealer Wins!";
+        loseBet();
+        resetGameAfterDelay()
+      } else {
+        // Empate
+        message = "It's a tie!";
+        chips[0] += betAmount; // Devolver la apuesta original en caso de empate
+      }
+    } else {
+      // Mostrar un error si el jugador no tiene suficientes fichas o ya pidió una carta
+      toastr.error(
+        "Not enough chips to double the bet or you've already drawn a new card."
+      );
+    }
+    document.getElementById("newCard").style.display = "none";
+    document.getElementById("stand").style.display = "none";
+  }
+  window.doubleBet = doubleBet;
+
 // we declare style none on that way we can see the button 
 document.getElementById("newCard").style.display = "none";
 document.getElementById("doubleBet").style.display = "none";
@@ -109,94 +197,100 @@ function calculateCardValue(card) {
 
 
 function renderGame() {
-  // esto pasa cuando presione deal esta parte es la del jugador 
-    console.log('calling the render esta funcion si se esta llamando c');
+  console.log('calling the render esta funcion si se esta llamando c');
     
-    cardsEl.innerHTML = ""; // Limpiar las cartas anteriores
-    let cardOffset = 0; // Offset para apilar las cartas
+  cardsEl.innerHTML = ""; // Limpiar las cartas anteriores
+  let cardOffset = 0; // Offset para apilar las cartas
 
-    // Mostrar todas las cartas en el array `cards`
-    for (let card of cards) {
-        let img = document.createElement("img");
-        img.src = card.image; // Asegúrate de que card.image es correcto
-        img.style.width = "150px";
-        img.style.height = "150px";
-        img.style.position = "absolute"; // Para asegurarse que se posicionen bien
-        img.style.left = `${cardOffset}px`; // Posición inicial
-        img.style.transform = `translate(${cardOffset}px, 0px)`; // Aplicar la traslación
+  // Mostrar todas las cartas en el array `cards`
+  for (let card of cards) {
+      let img = document.createElement("img");
+      img.src = card.image; // Asegúrate de que card.image es correcto
+      img.style.width = "100px";
+      img.style.height = "100px";
+      img.style.marginTop = "30px";
+      img.style.paddingLeft = "80px";
+      img.style.position = "absolute"; // Para asegurarse que se posicionen bien
+      img.style.left = `${cardOffset}px`; // Posición inicial
+      img.style.transform = `translate(${cardOffset}px, 0px)`; // Aplicar la traslación
         
-        // Añadir la clase de animación
-        img.classList.add("dropFromTopRight");
+      // Añadir la clase de animación
+      img.classList.add("dropFromTopRight");
 
-        // Añadir la carta al contenedor
-        cardsEl.appendChild(img);
-        cardOffset += 60; // Ajustar este valor para más o menos solapamiento
-    }
+      // Añadir la carta al contenedor
+      cardsEl.appendChild(img);
+      cardOffset += 60; // Ajustar este valor para más o menos solapamiento
+  }
 
-    // Calcular la suma considerando el As como 1 o 11
-    let aceCount = 0;
-    sum = 0; // Asegúrate de usar la variable global sum
-    let possibleSum = 0;
-  
-    // Calcular la suma total y contar los Ases
-    for (let card of cards) {
-        if (card.value === "ACE") {
-            aceCount++;
-            sum += 11; // El valor inicial del As será 11
-        } else if (["KING", "QUEEN", "JACK"].includes(card.value)) {
-            sum += 10; // Reyes, Reinas y Jotas valen 10
-        } else {
-            sum += parseInt(card.value); // Añadir el valor numérico de la carta
-        }
-    }
-  
-    // Si hay Ases, calcular también la suma alternativa donde el As valga 1
-    if (aceCount > 0) {
-        possibleSum = sum - 10 * aceCount; // Restar 10 por cada As para que valga 1 en vez de 11
-        // Mostrar las dos posibilidades solo si la suma es menor o igual a 21
-        if (sum > 21) {
-            sum = possibleSum; // Si la suma con As como 11 supera 21, usar el As como 1
-            possibleSum = 0; // Ya no hay una segunda posibilidad
-        }
-    }
-  
-    // Actualizar la visualización de la suma
-    if (possibleSum > 0 && sum <= 21) {
-        sumEl.textContent = sum + " / " + possibleSum; // Mostrar ambas posibilidades
-    } else {
-        sumEl.textContent = sum; // Mostrar solo la suma
-    }
-  
-    sumEl.classList.add("sum");
-    playerDealer.classList.add("sumDel");
-  
-    // **Aquí es donde defines la variable message**
-    let message; // Declarar la variable message aquí
+  // Calcular la suma considerando el As como 1 o 11
+  let aceCount = 0;
+  sum = 0; // Asegúrate de usar la variable global sum
+  let possibleSum = 0;
 
-    // Actualizar el mensaje del jugador
-    if (sum <= 20) {
-        message = "Do You Want another card?";
-    } else if (sum === 21) {
-        message = "Blackjack!";
-        hasBlackJack = true;
-        isAlive = false;
-      //  winBet();
-      //  resetGameAfterDelay();
-    } else if (sum > 21) {
-        message = "You Bust! Dealer Wins!";
-        isAlive = false;
-        //loseBet();
-       // resetGameAfterDelay();
-    }
+  // Calcular la suma total y contar los Ases
+  for (let card of cards) {
+      if (card.value === "ACE") {
+          aceCount++;
+          sum += 11; // El valor inicial del As será 11
+      } else if (["KING", "QUEEN", "JACK"].includes(card.value)) {
+          sum += 10; // Reyes, Reinas y Jotas valen 10
+      } else {
+          sum += parseInt(card.value); // Añadir el valor numérico de la carta
+      }
+  }
 
-    
-  
-    // Actualizar el mensaje en el DOM
-    messageEl.textContent = message;
+  // Si hay Ases, calcular también la suma alternativa donde el As valga 1
+  if (aceCount > 0) {
+      possibleSum = sum - 10 * aceCount; // Restar 10 por cada As para que valga 1 en vez de 11
+      if (sum > 21) {
+          sum = possibleSum; // Si la suma con As como 11 supera 21, usar el As como 1
+          possibleSum = 0; // Ya no hay una segunda posibilidad
+      }
+  }
+
+  // Actualizar la visualización de la suma
+  if (possibleSum > 0 && sum <= 21) {
+      sumEl.textContent = sum + " / " + possibleSum; // Mostrar ambas posibilidades
+  } else {
+      sumEl.textContent = sum; // Mostrar solo la suma
+  }
+
+  sumEl.classList.add("sum");
+  playerDealer.classList.add("sumDel");
+
+  // **Aquí es donde defines la variable message**
+  let message; // Declarar la variable message aquí
+  let messageClass = ""; // Variable para la clase de estilo
+
+  // Actualizar el mensaje del jugador
+  if (sum <= 20) {
+      message = "Do You Want another card?";
+      messageClass = "message-normal"; // Clase para mensaje normal
+  } else if (sum === 21) {
+      message = "Blackjack!";
+      hasBlackJack = true;
+      isAlive = false;
+      messageClass = "message-blackjack"; // Clase para mensaje de Blackjack
+      // winBet();
+      // resetGameAfterDelay();
+  } else if (sum > 21) {
+      message = "You Bust! Dealer Wins!";
+      isAlive = false;
+      messageClass = "message-bust"; // Clase para mensaje de Bust
+      // loseBet();
+      // resetGameAfterDelay();
+  }
+
+  // Actualizar el mensaje en el DOM
+  messageEl.textContent = message;
+
+  // Asignar la clase correspondiente
+  messageEl.className = messageClass;
 }
+
 function dealerNewCard() {
   return new Promise((resolve) => { // Devolver una promesa
-      if (sumDealer < 17) {
+      if (sumDealer < 18) {
           let card = getRandomCard();
           
           if (card) {  // Verifica que card no sea null
@@ -226,6 +320,8 @@ function dealerNewCard() {
 
   window.startGame = startGame; // Hacer la función accesible globalmente
   
+  
+
 
 // Dealer logic
 let dealerCards = [];
@@ -243,8 +339,9 @@ function renderGameDealer() {
   for (let card of dealerCards) {
       let img = document.createElement("img");
       img.src = card.image;
-      img.style.width = "150px";
-      img.style.height = "150px";
+      img.style.width = "100px";
+      img.style.height = "100px";
+      img.style.marginTop = "30px";
       img.style.top = `0px`;
       img.style.left = `${cardOffset}px`; // Posición inicial
       img.style.transform = `translate(${cardOffset}px, 0px)`; // Aplicar la transformación
@@ -281,7 +378,7 @@ renderGameDealer();
 
 
 function stand() {
-    alert('dddd')
+  
     dealerNewCard().then(() => { // Esperar a que el dealer termine de tomar cartas
       if (sum > 21) {
         // El jugador se pasa (pierde)
@@ -339,7 +436,7 @@ function stand() {
       document.getElementById("startGame").style.display = "flex";
       sumEl.classList.remove("sum");
       playerDealer.classList.remove("sumDel");
-    }, 99000);
+    }, 4000);
     // el delay de 6000 es los segundos que tienen que pasar para render de game again 
   }
   //  document.getElementById("player-dealer").classList.display = "none";
@@ -355,48 +452,61 @@ function stand() {
   function newCard() {
     drawCard();
     if (isAlive === true && hasBlackJack === false) {
-      let card = getRandomCard();
-      // Sumar el valor de la nueva carta a la suma total
-      let cardValue = calculateCardValue(card);
-      sum += cardValue;
-      // Agregar la nueva carta al array de cartas
-      cards.push(card);
-      hasDrawnCard = true;
-      // Añadir la nueva carta visualmente
-      let lastCard = cards[cards.length - 3]; // Usar la última carta
-      let img = document.createElement("img");
-      img.src = lastCard.image;
-      img.style.width = "150px";
-      img.style.height = "150px";
-      img.style.top = `0px`;
-      img.style.marginLeft = `50px`;
-      img.style.left = `${(cards.length - 3) * 50}px`; // Ajustar la posición de acuerdo con la cantidad de cartas
-      img.style.transform = `translate(${(cards.length - 1) * 30}px, 0px)`; // Aplicar la traslación
-      img.classList.add("dropFromTopRight"); // Agregar la clase de animación
-      cardsEl.appendChild(img); // Agregar la nueva carta al contenedor de cartas
-      // Actualizar el total de puntos
-      sumEl.textContent = "" + sum;
-      // Lógica para determinar el resultado del juego
-      if (sum > 21) {
-        message = "You Bust! Dealer Wins!";
-        isAlive = false;
-        loseBet();
-        winBet();
-        // resetGameAfterDelay();
-      } else if (sum === 21) {
-        message = "Blackjack!";
-        hasBlackJack = true;
-        isAlive = false;
-        winBet();
-        // resetGameAfterDelay();
-      } else if (sum <= 20) {
-        message = "Do You Want another card?";
-      }
-      messageEl.textContent = message;
+        let card = getRandomCard();
+        // Sumar el valor de la nueva carta a la suma total
+        let cardValue = calculateCardValue(card);
+        sum += cardValue;
+        // Agregar la nueva carta al array de cartas
+        cards.push(card);
+        hasDrawnCard = true;
+
+        // Añadir la nueva carta visualmente
+        let lastCard = cards[cards.length - 1]; // Usar la última carta
+        let img = document.createElement("img");
+        img.src = lastCard.image;
+        img.style.width = "100px";
+        img.style.height = "100px";
+        img.style.marginTop = "30px";
+        img.style.position = "absolute";
+        img.style.marginLeft = `120px`;
+        img.style.left = `${(cards.length - 1) * 50}px`; // Ajustar la posición de acuerdo con la cantidad de cartas
+        img.style.transform = `translate(${(cards.length - 1) * 30}px, 0px)`; // Aplicar la traslación
+        img.classList.add("dropFromTopRight"); // Agregar la clase de animación
+        cardsEl.appendChild(img); // Agregar la nueva carta al contenedor de cartas
+
+        // Actualizar el total de puntos
+        sumEl.textContent = "" + sum;
+
+        // **Aquí determinamos el mensaje y asignamos la clase correspondiente**
+        let message;
+        let messageClass = ""; // Variable para la clase de estilo
+
+        // Lógica para determinar el resultado del juego
+        if (sum > 21) {
+            message = "You Bust! Dealer Wins!";
+            isAlive = false;
+            messageClass = "message-bust"; // Clase para mensaje de Bust
+            loseBet(); // Lógica para perder la apuesta
+            // resetGameAfterDelay();
+        } else if (sum === 21) {
+            message = "Blackjack!";
+            hasBlackJack = true;
+            isAlive = false;
+            messageClass = "message-blackjack"; // Clase para mensaje de Blackjack
+            winBet(); // Lógica para ganar la apuesta
+            // resetGameAfterDelay();
+        } else if (sum <= 20) {
+            message = "Do You Want another card?";
+            messageClass = "message-normal"; // Clase para mensaje normal
+        }
+
+        // Actualizar el mensaje en el DOM
+        messageEl.textContent = message;
+        messageEl.className = messageClass; // Aplicar la clase de estilo correspondiente
     }
-    // document.getElementById("doubleBet").style.display = "none";
-  }
-  
+    // document.getElementById("doubleBet").style.display = "none"; // Si es necesario ocultar el botón de doble apuesta
+}
+
   window.newCard =newCard;
 
 
@@ -483,6 +593,6 @@ window.winBet = function() {
   createBetImage(0); // Resetea la imagen de apuesta a 0
   setbetAmount(0);
   resetGameAfterDelay() 
-  alert('lose from lose bet');
+ 
   
 };

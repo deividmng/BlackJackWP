@@ -5,19 +5,22 @@
   } */
   #cards-el {
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente si el contenedor tiene altura */
     position: absolute;
-    top: 60%;
-    left: 45%;
+    justify-content: center;
+  align-items: center;
+    top: 40%;
+    left: 40%;
     transform: translate(-50%, -50%); /* Ajusta el contenedor al centro */
+
 }
+
+
 #sum-el {
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente si el contenedor tiene altura */
   position: absolute;
-  top: 70%;
+  top: 64%;
   left: 50%;
  
 }
@@ -57,24 +60,3 @@
 }
 
 
-  
-@keyframes dropFromTopRight {
-  0% {
-    top: -350px;
-    left: -400%; /* Inicia desde el lado derecho */
-    opacity: 0;
-    transform: rotate(-360deg);
-  }
-  50% {
-    opacity: 1;
-    transform: rotate(0deg);
-  }
-  100% {
-    top: 0;
-    left: 0;
-  }
-}
-
-.dropFromTopRight {
-  animation: dropFromTopRight 3s forwards;
-}
