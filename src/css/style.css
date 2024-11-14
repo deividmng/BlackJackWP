@@ -2,9 +2,7 @@
 @import url("./h1Place.css");
 @import url("./buttons.css");
 
-.allArrows {
-  display: flex; /* Esto hará que las imágenes se alineen en una fila */
-}
+
 
 .add5px {
   margin-right: 5px; /* Espaciado entre las flechas */
@@ -27,7 +25,7 @@
 }
 
 .bet-value {
-  position: absolute;
+  position: center;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -38,9 +36,19 @@
   pointer-events: none; /* Para que el clic solo se detecte en el div, no en el texto */
 }
 
+#container-dealer {
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+  flex-direction: column; /* Apila los elementos verticalmente; usa 'row' si prefieres horizontal */
+  height: 100vh; /* Ajusta según sea necesario, 100vh llena la pantalla */
+  text-align: center; /* Centra el texto dentro de los elementos */
+}
 
 .sumDel {
-  position: relative; /* Necesario para posicionar el ::before correctamente */
+  position: absolute; /* Necesario para posicionar el ::before correctamente */
+  top: 1%; /* Centrado vertical */
+  left: 50%; /* Centrado horizontal */
   background-color: black; /* Fondo negro */
   color: white; /* Texto blanco */
   border: 2px solid gold; /* Borde dorado */
@@ -100,3 +108,80 @@
   border-right: 2px solid gold; /* Triángulo hacia la derecha */
   border-bottom: 20px solid black; /* Triángulo hacia abajo */
 }
+
+
+/* this is the h1*/
+
+.allArrows img {
+  margin-right: 28px;
+  max-width: 30px;
+  max-height: 30px;
+  animation: moveUP 2s infinite alternate; /* Adjust duration as needed */
+  display: flex;                /* Activar Flexbox */
+  justify-content: center;      /* Centrar verticalmente */
+  align-items: center;          /* Centrar horizontalmente */
+  gap: 20px;                    /* Espacio entre elementos */
+  height: 100%;                 /* Ocupa toda la altura */
+  width: 100%; 
+  
+}
+
+.bet-button {
+  position: relative;
+  display: inline-block;
+  width: 50px;  /* Ajusta el tamaño según sea necesario */
+  height: 50px;  /* Ajusta el tamaño según sea necesario */
+  cursor: pointer;  /* Cambia el cursor al pasar sobre el contenedor */
+  margin: 5px;  /* Espaciado entre los botones */
+
+}
+
+
+
+
+.bet-button span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);  /* Centra el número */
+  color: black;  /* Color del texto */
+  font-weight: bold;  /* Negrita para el texto */
+  font-size: 16px;  /* Tamaño de la fuente */
+}
+
+
+
+#center {
+  display: flex;
+  justify-content: center;  /* Centrar horizontalmente */
+  align-items: center;      /* Centrar verticalmente */
+  flex-wrap: wrap;          /* Permite que los botones se ajusten en varias filas si es necesario */
+  width: 100%;              /* Asegura que el contenedor ocupe todo el ancho disponible */
+  height: 100%;             /* Asegura que el contenedor ocupe toda la altura disponible */
+
+}
+.center {
+  display: flex;
+  justify-content: center;  /* Centrar horizontalmente */
+  align-items: center;      /* Centrar verticalmente */
+  flex-wrap: wrap;          /* Permite que los botones se ajusten en varias filas si es necesario */
+  width: 100%;              /* Asegura que el contenedor ocupe todo el ancho disponible */
+  height: 100%;             /* Asegura que el contenedor ocupe toda la altura disponible */
+
+}
+
+
+
+
+.allArrows {
+  /* Agrega el estilo necesario para las flechas */
+display: flex;
+  width: 100%;
+margin-left: 20px;
+
+}
+
+.add5px {
+  color: red;
+}
+

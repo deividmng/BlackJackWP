@@ -2,6 +2,7 @@ import { getRandomCard, drawCard, drawnCards } from './deck.js';
 import { getbetAmount, setbetAmount,createBetImage } from './bet.js';
 import { updateChips } from './counterChips.js';
 import toastr from 'toastr';
+import '../css/cards.css';
 import { betAmount } from './bet.js'
 import 'toastr/build/toastr.min.css'; // Asegúrate de importar el CSS también si es necesario
 export let cards = [];
@@ -10,8 +11,12 @@ export let isAlive = false;
 export let sum = 0;
 //let betAmount = 10; // Valor inicial o carga desde el almacenamiento si es necesario
 
-
-
+// we declare style none on that way we can see the button 
+document.getElementById("newCard").style.display = "none";
+document.getElementById("doubleBet").style.display = "none";
+document.getElementById("stand").style.display = "none";
+document.getElementById("startGame").style.display = "none";
+document.getElementById("cleanBet").style.display = "none";
 
 
 let messageEl = document.getElementById("message-el");
@@ -29,6 +34,7 @@ let totalBetAmount = 0
 export function startGame() { 
     console.log(cards)
     console.log('Start Game button clicked');
+    
 
     // Verifica si hay cartas disponibles
     if (drawnCards.length === 0) {
@@ -58,8 +64,18 @@ export function startGame() {
     } else {
         toastr.error("Please place a bet before starting the game.");
     }
+    // Mostrar botones de control y ocultar algunos elementos
+    document.getElementById("doubleBet").style.display = "flex";
+    document.getElementById("startGame").style.display = "none";
+    document.getElementById("newCard").style.display = "flex";
+    document.getElementById("stand").style.display = "flex";
+    document.getElementById("bet-buttons").style.display = "none";
+    // betImage.classList.remove("spinAndDisappear");
+    document.getElementById("cleanBet").style.display = "none";
+    
 }
 
+   
 window.startGame = startGame; // Esto la hace accesible globalmente
 // Función para obtener el valor de una carta
 function getCardValue(card) {
@@ -93,7 +109,8 @@ function calculateCardValue(card) {
 
 
 function renderGame() {
-    console.log('calling the render esta funcion si se esta llamando ');
+  // esto pasa cuando presione deal esta parte es la del jugador 
+    console.log('calling the render esta funcion si se esta llamando c');
     
     cardsEl.innerHTML = ""; // Limpiar las cartas anteriores
     let cardOffset = 0; // Offset para apilar las cartas
@@ -102,8 +119,8 @@ function renderGame() {
     for (let card of cards) {
         let img = document.createElement("img");
         img.src = card.image; // Asegúrate de que card.image es correcto
-        img.style.width = "50px";
-        img.style.height = "70px";
+        img.style.width = "150px";
+        img.style.height = "150px";
         img.style.position = "absolute"; // Para asegurarse que se posicionen bien
         img.style.left = `${cardOffset}px`; // Posición inicial
         img.style.transform = `translate(${cardOffset}px, 0px)`; // Aplicar la traslación
@@ -113,7 +130,7 @@ function renderGame() {
 
         // Añadir la carta al contenedor
         cardsEl.appendChild(img);
-        cardOffset += 30; // Ajustar este valor para más o menos solapamiento
+        cardOffset += 60; // Ajustar este valor para más o menos solapamiento
     }
 
     // Calcular la suma considerando el As como 1 o 11
@@ -171,6 +188,8 @@ function renderGame() {
         //loseBet();
        // resetGameAfterDelay();
     }
+
+    
   
     // Actualizar el mensaje en el DOM
     messageEl.textContent = message;
@@ -215,6 +234,7 @@ let messageDealer = document.getElementById("message-dele");
 
 let sumDealer = 0;
 function renderGameDealer() {
+  
   cardDel.innerHTML = "";
   let cardOffset = 0; // Offset para apilar las cartas
   sumDealer = 0; // Reiniciar la suma del dealer
@@ -224,15 +244,17 @@ function renderGameDealer() {
       let img = document.createElement("img");
       img.src = card.image;
       img.style.width = "150px";
-      img.style.height = "70px";
+      img.style.height = "150px";
       img.style.top = `0px`;
       img.style.left = `${cardOffset}px`; // Posición inicial
       img.style.transform = `translate(${cardOffset}px, 0px)`; // Aplicar la transformación
       img.classList.add("dropFromTopRight");
+      // cardDel.style.marginTop = `50px`;
+    
       
       cardDel.appendChild(img);
       sumDealer += calculateCardValue(card);
-      cardOffset += 30; // Ajusta este valor para más o menos solapamiento
+      cardOffset += 10; // Ajusta este valor para más o menos solapamiento
   }
   
   // Mostrar `sumDealer` solo si es mayor que cero
@@ -256,7 +278,7 @@ renderGameDealer();
 
 
 // stand funcion 
-document.getElementById("stand").style.display = "block";
+
 
 function stand() {
     alert('dddd')
@@ -307,17 +329,17 @@ function stand() {
       cardDel.textContent = "";
       playerDealer.textContent = "";
       messageDealer.textContent = "";
-      // document.getElementById("doubleBet").style.display = "none"; // Ocultar el botón de doblar apuesta
-      // document.getElementById("newCard").style.display = "none";
-      // document.getElementById("stand").style.display = "none";
-      // document.getElementById("bet-buttons").style.display = "none";
-      // document.getElementById("bet-buttons").style.display = "block";
+      document.getElementById("doubleBet").style.display = "none"; // Ocultar el botón de doblar apuesta
+      document.getElementById("newCard").style.display = "none";
+      document.getElementById("stand").style.display = "none";
+      document.getElementById("bet-buttons").style.display = "none";
+      document.getElementById("bet-buttons").style.display = "block";
       // //inicialColor();
       document.getElementById("cleanBet").style.display = "flex"; // Mostrar el botón de limpiar apuesta
       document.getElementById("startGame").style.display = "flex";
       sumEl.classList.remove("sum");
       playerDealer.classList.remove("sumDel");
-    }, 9000);
+    }, 99000);
     // el delay de 6000 es los segundos que tienen que pasar para render de game again 
   }
   //  document.getElementById("player-dealer").classList.display = "none";
@@ -326,11 +348,12 @@ function stand() {
 
 
   
-  document.getElementById("newCard").style.display = "block";
+  // document.getElementById("newCard").style.display = "block";
   let message = document.getElementById("message-el");
   let hasDrawnCard = false;
+  let lastCard = cards[cards.length - 2];
   function newCard() {
-    drawCard()
+    drawCard();
     if (isAlive === true && hasBlackJack === false) {
       let card = getRandomCard();
       // Sumar el valor de la nueva carta a la suma total
@@ -340,31 +363,32 @@ function stand() {
       cards.push(card);
       hasDrawnCard = true;
       // Añadir la nueva carta visualmente
-      let lastCard = cards[cards.length - 1];
+      let lastCard = cards[cards.length - 3]; // Usar la última carta
       let img = document.createElement("img");
       img.src = lastCard.image;
-      img.style.width = "50px";
-      img.style.height = "70px";
+      img.style.width = "150px";
+      img.style.height = "150px";
       img.style.top = `0px`;
-      img.style.left = `${(cards.length - 1) * 30}px`; // Ajustar la posición de acuerdo con la cantidad de cartas
+      img.style.marginLeft = `50px`;
+      img.style.left = `${(cards.length - 3) * 50}px`; // Ajustar la posición de acuerdo con la cantidad de cartas
       img.style.transform = `translate(${(cards.length - 1) * 30}px, 0px)`; // Aplicar la traslación
       img.classList.add("dropFromTopRight"); // Agregar la clase de animación
       cardsEl.appendChild(img); // Agregar la nueva carta al contenedor de cartas
       // Actualizar el total de puntos
-      sumEl.textContent = "" + sum ;
+      sumEl.textContent = "" + sum;
       // Lógica para determinar el resultado del juego
       if (sum > 21) {
         message = "You Bust! Dealer Wins!";
         isAlive = false;
         loseBet();
-        winBet()
-       // resetGameAfterDelay();
+        winBet();
+        // resetGameAfterDelay();
       } else if (sum === 21) {
         message = "Blackjack!";
         hasBlackJack = true;
         isAlive = false;
         winBet();
-       // resetGameAfterDelay();
+        // resetGameAfterDelay();
       } else if (sum <= 20) {
         message = "Do You Want another card?";
       }
@@ -372,7 +396,7 @@ function stand() {
     }
     // document.getElementById("doubleBet").style.display = "none";
   }
-
+  
   window.newCard =newCard;
 
 
@@ -388,7 +412,7 @@ function stand() {
       localStorage.setItem("chips", chips[0]); // Guardar en localStorage
       console.log("Ganaste la apuesta, fichas actualizadas: £" + chips[0]);
      // winBetEfect(); // Llamar al efecto de ganancia
-    }, 3000); // Después de 3 segundos
+    }, 9000); // Después de 3 segundos
     alert('lose')
   }
   

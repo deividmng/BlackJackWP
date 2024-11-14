@@ -13,12 +13,20 @@
 
 
 .PlaceBet {
+  margin-top: 90px;
   position: relative;
   opacity: 1;
   color: wheat;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   transition: opacity 2s ease-in-out;
   font-size: 30px;
+  animation: moveUP 2s infinite alternate; 
+  display: flex;                /* Activar Flexbox */
+  justify-content: center;      /* Centrar verticalmente */
+  align-items: center;          /* Centrar horizontalmente */
+  gap: 20px;                    /* Espacio entre elementos */
+  height: 100%;                 /* Ocupa toda la altura */
+  width: 100%; 
 
 
 }

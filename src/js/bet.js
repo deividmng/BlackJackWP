@@ -13,6 +13,9 @@ export function setbetAmount(value) {
 }
 
 
+document.getElementById("img-chips").style.display = "none";
+document.getElementById("img-chips").classList.add("center");
+
 
 export function createBetButtons() {
     const betButtonsData = [
@@ -54,6 +57,16 @@ window.bet = function(value) {
     console.log("Chips remaining:", chips[0]); // Para verificar los chips restantes
     console.log("Current bet amount:", betAmount); // Para verificar el valor de betAmount
     console.log("bet function called with value:", value); // Para verificar la llamada a la función
+
+    const PlaceBet = document.querySelector(".PlaceBet");
+    PlaceBet.classList.add("PlaceBetOut");
+    PlaceBet.addEventListener(
+      "transitionend",
+      () => {
+        PlaceBet.style.display = "none";
+      },
+      { once: true }
+    );
     // Verificar si tienes suficientes fichas para la apuesta
     if (chips[0] >= value) {
         const startingChips = chips[0]; // Valor inicial antes de la apuesta
@@ -77,6 +90,10 @@ window.bet = function(value) {
     } else {
         alert("Not enough chips to place this bet!");
     }
+    document.getElementById("startGame").style.display = "flex";
+    document.getElementById("cleanBet").style.display = "flex";
+    
+document.getElementById("img-chips").style.display = "flex";
 };
 
 
